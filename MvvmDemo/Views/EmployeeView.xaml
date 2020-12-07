@@ -38,28 +38,52 @@
                    Grid.Column="0" Margin="5,8" Padding="3,0" />
         <TextBox Name="txtId"  
                    Grid.Row="1" 
-                   Grid.Column="1" Margin="5,8" Padding="3,0" />
+                   Grid.Column="1" Margin="5,8" Padding="3,0"
+                   Text="{Binding Path=CurrentEmployee.Id , Mode=TwoWay}"/>
         <TextBox Name="txtName"  
                    Grid.Row="2" 
-                   Grid.Column="1" Margin="5,8" Padding="3,0" />
+                   Grid.Column="1" Margin="5,8" Padding="3,0"
+                   Text="{Binding Path=CurrentEmployee.Name, Mode=TwoWay}"/>
         <TextBox Name="txtAge" 
                    Grid.Row="3" 
-                   Grid.Column="1" Margin="5,8" Padding="3,0" />
+                   Grid.Column="1" Margin="5,8" Padding="3,0"
+                   Text="{Binding Path=CurrentEmployee.Age, Mode=TwoWay}"/>
         <StackPanel Orientation="Horizontal"
                     Grid.Row= "4"
                     Grid.Column="1">
-            <Button Name="btnAdd" Content="ADD" Margin="5,8" Padding="3,1"/>
+            <Button Name="btnAdd" 
+                    Content="ADD"
+                    Margin="5,8" 
+                    Padding="3,1"
+                    Command="{Binding Path=SaveCommand}"/>
             <Button Name="btnUpdate" Content="UPDATE" Margin="5,8" Padding="3,1"/>
             <Button Name="btnSearch" Content="SEARCH" Margin="5,8" Padding="3,1"/>
             <Button Name="btnDelete" Content="DELETE" Margin="5,8" Padding="3,1"/>
         </StackPanel>
         <TextBlock Name="txtBlockMessage"
                    Grid.Row="5"
-                   Grid.Column="1"/>
+                   Grid.Column="1"
+                   Text="{Binding Path=Message}"/>
         <DataGrid Name="dgEmployees"
                   AutoGenerateColumns="False"        
                   Grid.Row="6"
-                  Grid.Column="1" Margin="5,8" Padding="3,0"/>
+                  Grid.Column="1" 
+                  Margin="5,8" 
+                  Padding="3,0"
+                  ItemsSource="{Binding Path=EmployeesList, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Employee Id"
+                              Width="auto"
+                              Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn  Header="Employee Name"
+                              Width="auto"
+                              Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn  Header="Employee Age"
+                              Width="auto"
+                              Binding="{Binding Path=Age}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </UserControl>
