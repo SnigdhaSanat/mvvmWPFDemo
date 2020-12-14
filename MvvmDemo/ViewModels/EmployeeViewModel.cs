@@ -33,6 +33,9 @@ namespace MvvmDemo.ViewModels
             LoadData();
             CurrentEmployee = new Employee();
             saveCommand = new RelayCommand(Save);
+            searchCommand = new RelayCommand(Search);
+            updateCommand = new RelayCommand(Update);
+            deleteCommand = new RelayCommand(Delete);
         }
 
         #region DisplayOperation
@@ -95,13 +98,103 @@ namespace MvvmDemo.ViewModels
         }
         #endregion
 
-        #region
+        #region SearchOperation
+        private RelayCommand searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get { return searchCommand; }
+        }
+
+        public void Search()
+        {
+            try
+            {
+                var ObjEmployee = ObjEmployeeService.Search(CurrentEmployee.Id);
+
+                if (ObjEmployee != null)
+                {
+                    CurrentEmployee.Name = ObjEmployee.Name;
+                    CurrentEmployee.Age = ObjEmployee.Age;
+                    Message = "Employee found";
+                }
+                else
+                {
+                    Message = "Employee not found";
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+
         #endregion
 
-        #region
+        #region UpdateOperation
+
+        private RelayCommand updateCommand;
+        public RelayCommand UpdateCommand 
+        {
+            get { return updateCommand; }
+        }
+
+        public void Update()
+        {
+            {
+                try
+                {
+                    var IsUpdated = ObjEmployeeService.Update(CurrentEmployee);
+            
+                    if (IsUpdated)
+                    {
+                        Message = "Employee Updated";
+                        LoadData();
+                    }
+                    else
+                    {
+                        Message = "Update Operation failed";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Message = ex.Message;
+                }
+            }
+        }
+
         #endregion
 
-        #region
+        #region DeleteOperation
+        private RelayCommand deleteCommand;
+        public RelayCommand DeleteCommand
+        {
+            get
+            {
+                return deleteCommand;
+            }
+        }
+
+        public void Delete()
+        {
+            try
+            {
+                var IsDeleted = ObjEmployeeService.Delete(CurrentEmployee.Id);
+                if (IsDeleted)
+                {
+                    Message = "Employee Deleted";
+                    LoadData();
+                }
+                else
+                {
+                    Message = "Delete Operation failed";
+                }
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+
         #endregion
 
 

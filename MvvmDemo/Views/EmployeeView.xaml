@@ -56,9 +56,21 @@
                     Margin="5,8" 
                     Padding="3,1"
                     Command="{Binding Path=SaveCommand}"/>
-            <Button Name="btnUpdate" Content="UPDATE" Margin="5,8" Padding="3,1"/>
-            <Button Name="btnSearch" Content="SEARCH" Margin="5,8" Padding="3,1"/>
-            <Button Name="btnDelete" Content="DELETE" Margin="5,8" Padding="3,1"/>
+            <Button Name="btnUpdate" 
+                    Content="UPDATE" 
+                    Margin="5,8" 
+                    Padding="3,1"
+                    Command="{Binding Path=UpdateCommand}"/>
+            <Button Name="btnSearch" 
+                    Content="SEARCH"
+                    Margin="5,8" 
+                    Padding="3,1"
+                    Command="{Binding Path=SearchCommand}"/>
+            <Button Name="btnDelete" 
+                    Content="DELETE" 
+                    Margin="5,8" 
+                    Command="{Binding Path=DeleteCommand}"
+                    Padding="3,1"/>
         </StackPanel>
         <TextBlock Name="txtBlockMessage"
                    Grid.Row="5"
